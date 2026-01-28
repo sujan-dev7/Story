@@ -36,8 +36,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Set the path to your specific subfolder
-          path: './OnePiece/code'
+          # --- FIX: Deploy the entire 'OnePiece' folder instead of just 'code' ---
+          path: './OnePiece' 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
