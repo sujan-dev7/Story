@@ -1,6 +1,22 @@
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     const body = document.body;
+    const loaderProgress = document.querySelector('.loader-progress');
+    const loaderShip = document.querySelector('.loader-ship');
+    const loaderBar = document.querySelector('.loader-bar');
+
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 5; // Increment progress
+        if (progress <= 100) {
+            loaderProgress.style.width = `${progress}%`;
+            // Calculate ship position based on progress, ensuring it stays within the bar
+            const shipPosition = (loaderBar.offsetWidth - loaderShip.offsetWidth) * (progress / 100);
+            loaderShip.style.left = `${shipPosition}px`;
+        } else {
+            clearInterval(interval);
+        }
+    }, 100); // Update every 100ms
 
     // Phase 1: Fade out Preloader to reveal the "Blank" Splash Screen
     setTimeout(() => {
