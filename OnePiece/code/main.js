@@ -31,3 +31,47 @@ window.addEventListener('load', () => {
         }, 1000); 
     }, 2500); 
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const crewMembers = document.querySelectorAll('.crew-member');
+    const crewModal = document.getElementById('crew-modal');
+    const modalName = document.getElementById('modal-name');
+    const modalRole = document.getElementById('modal-role');
+    const modalDescription = document.getElementById('modal-description');
+    const closeButton = crewModal.querySelector('.close-button');
+    const modalOverlay = crewModal.querySelector('.modal-overlay');
+
+    crewMembers.forEach(member => {
+        member.addEventListener('click', () => {
+            const name = member.querySelector('h3').textContent;
+            const role = member.querySelector('p').textContent;
+
+            // Populate modal with content from the clicked card
+            modalName.textContent = name;
+            modalRole.textContent = role;
+            // Placeholder for more detailed description
+            modalDescription.textContent = `This is a placeholder for more detailed information about ${name}, the ${role}.`;
+
+            // Show the modal
+            crewModal.classList.add('active');
+        });
+    });
+
+    // Function to close the modal
+    const closeModal = () => {
+        crewModal.classList.remove('active');
+    };
+
+    // Close modal when close button is clicked
+    closeButton.addEventListener('click', closeModal);
+
+    // Close modal when clicking outside the content (overlay)
+    modalOverlay.addEventListener('click', closeModal);
+
+    // Close modal when Escape key is pressed
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && crewModal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+});
