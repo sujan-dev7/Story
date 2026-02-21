@@ -74,4 +74,13 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
+
+    // Handle "Explore More" button click for Chapters & Arcs
+    const exploreEp1Button = document.getElementById('explore-ep1-button');
+    if (exploreEp1Button) {
+        exploreEp1Button.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default anchor behavior
+            window.location.href = 'episode1.html'; // Navigate to the new page
+        });
+    }
 });
